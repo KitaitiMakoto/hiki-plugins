@@ -146,7 +146,7 @@ end
 
 def atom_make_content(page, mode = nil)
   mode ||= @conf['atom.mode']
-  raise ArgumentError, "Unknown mode: #{}" unless [:unidiff, :worddiff_digest, :worddiff_full, :html_full].include?(mode)
+  raise ArgumentError, "Unknown mode: #{mode}" unless [:unidiff, :worddiff_digest, :worddiff_full, :html_full].include?(mode)
   
   name = page.keys[0]
   src = @db.load_backup(name) || ''
