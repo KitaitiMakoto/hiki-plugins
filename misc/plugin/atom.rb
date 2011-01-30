@@ -5,7 +5,7 @@
 #
 # rss.rb plugin is very helpful for this plugin, thanks!
 # 
-# == Required
+# == Requirements
 #  * rss library which can make Atom feeds
 #    (If your rss lib cannot, download from 
 #     http://www.cozmixng.org/~rwiki/?cmd=view;name=RSS+Parser)
@@ -57,6 +57,7 @@ end
 def atom_entry(page_name)
   page = @db.info(page_name)
   return print @cgi.header({'status' => 'NOT_FOUND'}) unless page
+  return print @cgi.header({'status' => 'FORBIDDEN'}) unless respond_to?(:viewable?) && viewable?(page.keys[0].to_s)
   
   last_modified = page[:last_modified]
   header = {}
@@ -86,7 +87,9 @@ def atom_entry(page_name)
 end
 
 def atom_recent_updates(page_count = atom_default_page_count)
-  @db.page_info.sort_by do |p|
+  pages = @db.page_info
+  pages.reject! {|page| ! viewable?(page.keys[0])} if respond_to?(:viewable?)
+  pages.sort_by do |p|
     p[p.keys[0]][:last_modified]
   end.last(page_count).reverse
 end
