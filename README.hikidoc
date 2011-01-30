@@ -1,0 +1,13 @@
+! Hiki plugins
+These are plugins for [[Hiki|http://hikiwiki.org/]], Wiki engine written in Ruby.
+
+! Environment
+Checked under:
+* Ruby 1.8.7
+* Hiki 0.8.8.1
+
+! License
+Distributed under the term of the MIT License. See LICENSE file.
+
+! Install
+Copy files into your Hiki directory and then activate them in admin page.

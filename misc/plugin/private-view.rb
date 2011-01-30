@@ -1,11 +1,5 @@
 # private-view.rb v 0.5
-# Copyright (C) Kitaiti Makoto 2011
-# Distributed under the term of the MIT License
-# (see http://www.opensource.org/licenses/mit-license.php)
-#
-# Checked under:
-#   * Ruby 1.8.6, 1.8.7
-#   * Hiki 0.8.8.1
+# Copyright (C) 2011 Kitaiti Makoto <KitaitiMakoto@gmail.com>
 #
 # Requirements:
 #   * edit_user plugin must be activated

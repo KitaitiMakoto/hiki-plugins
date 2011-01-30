@@ -1,5 +1,5 @@
-# = $Id: atom.rb, v0.9 2010-10-25
-# Copyright (C) 2010 KITAITI Makoto <KitaitiMakoto@gmail.com>
+# = $Id: atom.rb, v1.0 2011-01-31
+# Copyright (C) 2011 KITAITI Makoto <KitaitiMakoto@gmail.com>
 #
 # A Hiki plugin to syndicate Atom feed 
 #
@@ -17,10 +17,8 @@
 # 
 # == To Do
 #  * Refactoring(Extract Method)
-#
-# == License
-#  atom.rb, en/atom.rb and ja/atom.rb are
-#  distributed under the GPL v2.(see {HIKIROOT}/doc/COPYING.)
+require 'time'
+
 def atom
   if @conf['atom.entry.enable'] && @page
     atom_entry(@page)
@@ -204,7 +202,7 @@ def atom_saveconf
   if @mode == 'saveconf'
     @conf['atom.mode'] = @cgi.params['atom.mode'][0].intern
     @conf['atom.count'] = [@cgi.params['atom.count'][0].to_i, atom_max_page_count].min
-    @conf['atom.count'] = [@conf['atom.count'], 0].max
+    @conf['atom.count'] = [@conf['atom.count'], 1].max
   end 
 end
 
