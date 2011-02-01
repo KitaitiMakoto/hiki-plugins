@@ -190,7 +190,7 @@ end
 def private_view_private_page?( page )
   info = @db.info( page )
   return false unless info
-  ((@conf['private-view.keywords'] || []) & info[:keyword]).empty?
+  ! ((@conf['private-view.keywords'] || []) & info[:keyword]).empty?
 end
 
 add_conf_proc('private-view', private_view_label) do

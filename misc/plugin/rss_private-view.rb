@@ -9,7 +9,7 @@ else
 def rss_body(page_num = 10)
 
   pages = @db.page_info.delete_if do |page|
-    ! private_view_private_page? page.keys[0]
+    private_view_private_page? page.keys[0]
   end.sort do |a, b|
     k1 = a.keys[0]
     k2 = b.keys[0]

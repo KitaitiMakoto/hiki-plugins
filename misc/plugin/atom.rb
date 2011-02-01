@@ -57,7 +57,7 @@ end
 def atom_entry(page_name)
   page = @db.info(page_name)
   return print @cgi.header({'status' => 'NOT_FOUND'}) unless page
-  return print @cgi.header({'status' => 'FORBIDDEN'}) unless respond_to?(:viewable?) && viewable?(page.keys[0].to_s)
+  return print @cgi.header({'status' => 'FORBIDDEN'}) unless respond_to?(:viewable?) && viewable?(page.keys[0].to_s) # for private-view.rb plugin
   
   last_modified = page[:last_modified]
   header = {}
@@ -88,7 +88,7 @@ end
 
 def atom_recent_updates(page_count = atom_default_page_count)
   pages = @db.page_info
-  pages.reject! {|page| ! private_view_private_page?(page.keys[0])} if respond_to? :private_view_private_page?
+  pages.reject! {|page| private_view_private_page?(page.keys[0])} if respond_to? :private_view_private_page? # for private-view.rb plugin
   pages.sort_by do |p|
     p[p.keys[0]][:last_modified]
   end.last(page_count).reverse
