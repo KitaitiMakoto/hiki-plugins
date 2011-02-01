@@ -88,7 +88,7 @@ end
 
 def atom_recent_updates(page_count = atom_default_page_count)
   pages = @db.page_info
-  pages.reject! {|page| ! viewable?(page.keys[0])} if respond_to?(:viewable?)
+  pages.reject! {|page| ! private_view_private_page?(page.keys[0])} if respond_to? :private_view_private_page?
   pages.sort_by do |p|
     p[p.keys[0]][:last_modified]
   end.last(page_count).reverse
