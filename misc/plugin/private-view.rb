@@ -3,9 +3,6 @@
 #
 # Requirements:
 #   * edit_user plugin must be activated
-#
-# To Do:
-#   * conceal from result of incremental search
 module ::Hiki
   class Command
     def cmd_index
