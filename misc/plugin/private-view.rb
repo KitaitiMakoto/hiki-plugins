@@ -204,6 +204,7 @@ add_conf_proc('private-view', private_view_label) do
     
     @conf["#{SP_PREFIX}.selected"] = (used - disabled_plugins + enabled_plugins).uniq * "\n"
     @conf["#{SP_PREFIX}.notselected"] = (notused + unknown - enabled_plugins + disabled_plugins).uniq * "\n"
+    enabled_plugins.each {|plugin| load_plugin File.expand_path(File.join(File.dirname(__FILE__), plugin))}
   end
   
   <<EOH
