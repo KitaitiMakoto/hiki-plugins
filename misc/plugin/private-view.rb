@@ -184,7 +184,7 @@ def recent( n = 20 )
 end
 
 def viewable?( page = @page )
-  private_view_private_page?( page ) or editable?( page )
+  !private_view_private_page?( page ) or editable?( page )
 end
 
 def private_view_private_page?( page )
