@@ -57,7 +57,7 @@ end
 def atom_entry(page_name)
   page = @db.info(page_name)
   return print @cgi.header({'status' => 'NOT_FOUND'}) unless page
-  return print @cgi.header({'status' => 'FORBIDDEN'}) unless respond_to?(:viewable?) && viewable?(page.keys[0].to_s) # for private-view.rb plugin
+  return print @cgi.header({'status' => 'FORBIDDEN'}) if respond_to?(:viewable?) && !viewable?(page.keys[0].to_s) # for private-view.rb plugin
   
   last_modified = page[:last_modified]
   header = {}
