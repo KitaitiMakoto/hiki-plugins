@@ -198,13 +198,13 @@ add_conf_proc('private-view', private_view_label) do
     @conf['private-view.keywords'] = @cgi.params['private-view.keywords'][0].split("\n").collect {|kw| kw.strip}.delete_if {|kw| kw.size == 0}
     
     used, notused, unknown = collect_plugins(sp_hash_from_dirs(@sp_path))
-    related_plugins = @cgi.params.select {|k, v| k =~ /\A#{SP_PREFIX}\./}.collect {|param| param[0][SP_PREFIX.length+1 .. -1]}
-    enabled_plugins = related_plugins.select {|plugin| @cgi.params["#{SP_PREFIX}.#{plugin}"][0] == 't'}
-    disabled_plugins = related_plugins - enabled_plugins
+    related = @cgi.params.select {|k, v| k =~ /\A#{SP_PREFIX}\./}.collect {|param| param[0][SP_PREFIX.length+1 .. -1]}
+    enabled = related.select {|plugin| @cgi.params["#{SP_PREFIX}.#{plugin}"][0] == 't'}
+    disabled = related - enabled
     
-    @conf["#{SP_PREFIX}.selected"] = (used - disabled_plugins + enabled_plugins).uniq * "\n"
-    @conf["#{SP_PREFIX}.notselected"] = (notused + unknown - enabled_plugins + disabled_plugins).uniq * "\n"
-    enabled_plugins.each {|plugin| load_plugin File.expand_path(File.join(File.dirname(__FILE__), plugin))}
+    @conf["#{SP_PREFIX}.selected"] = (used - disabled + enabled).uniq * "\n"
+    @conf["#{SP_PREFIX}.notselected"] = (notused + unknown - enabled + disabled).uniq * "\n"
+    enabled.each {|plugin| load_plugin File.expand_path(File.join(File.dirname(__FILE__), plugin))}
   end
   
   <<EOH
