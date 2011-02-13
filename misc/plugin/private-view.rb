@@ -1,4 +1,4 @@
-# private-view.rb v 0.5
+# private-view.rb v 0.6
 # Copyright (C) 2011 Kitaiti Makoto <KitaitiMakoto@gmail.com>
 #
 # Requirements:
@@ -194,18 +194,7 @@ def private_view_private_page?( page )
 end
 
 add_conf_proc('private-view', private_view_label) do
-  if @mode == 'saveconf'
-    @conf['private-view.keywords'] = @cgi.params['private-view.keywords'][0].split("\n").collect {|kw| kw.strip}.delete_if {|kw| kw.size == 0}
-    
-    used, notused, unknown = collect_plugins(sp_hash_from_dirs(@sp_path))
-    related = @cgi.params.select {|k, v| k =~ /\A#{SP_PREFIX}\./}.collect {|param| param[0][SP_PREFIX.length+1 .. -1]}
-    enabled = related.select {|plugin| @cgi.params["#{SP_PREFIX}.#{plugin}"][0] == 't'}
-    disabled = related - enabled
-    
-    @conf["#{SP_PREFIX}.selected"] = (used - disabled + enabled).uniq * "\n"
-    @conf["#{SP_PREFIX}.notselected"] = (notused + unknown - enabled + disabled).uniq * "\n"
-    enabled.each {|plugin| load_plugin File.expand_path(File.join(File.dirname(__FILE__), plugin))}
-  end
+  private_view_saveconf if @mode == 'saveconf'
   
   <<EOH
 #{private_view_dependency}
@@ -243,16 +232,45 @@ add_edit_proc do
 EOH
 end
 
+def private_view_saveconf
+  @conf['private-view.keywords'] = @cgi.params['private-view.keywords'][0].split("\n").collect {|kw| kw.strip}.delete_if {|kw| kw.size == 0}
+  
+  used, notused, unknown = collect_plugins(sp_hash_from_dirs(@sp_path))
+  related = @cgi.params.select {|k, v| k =~ /\A#{SP_PREFIX}\./}.collect {|param| param[0][SP_PREFIX.length+1 .. -1]}
+  enabled = related.select {|plugin| @cgi.params["#{SP_PREFIX}.#{plugin}"][0] == 't'}
+  disabled = related - enabled
+  
+  @conf["#{SP_PREFIX}.selected"] = (used - disabled + enabled).uniq * "\n"
+  @conf["#{SP_PREFIX}.notselected"] = (notused + unknown - enabled + disabled).uniq * "\n"
+  enabled.each {|plugin| load_plugin File.expand_path(File.join(File.dirname(__FILE__), plugin))}
+  
+  @conf['user.auth'] = @cgi.params['user.auth'][0].to_i
+end
+
 def private_view_dependency
   dependent_plugin_files = ['edit_user.rb']
   used_plugins, = collect_plugins(sp_hash_from_dirs(@sp_path))
-  return if used_plugins & dependent_plugin_files == dependent_plugin_files
-<<EOH
-<em>#{private_view_dependency_warning}</em>
-<ul>
-    #{sp_li_plugins(dependent_plugin_files, true, false)}
-</ul>
+  dependent_plugins_enabled = (dependent_plugin_files - used_plugins).empty?
+  dependency_filled = dependent_plugins_enabled && (@conf['user.auth'] == 0)
+  return if dependency_filled
+  
+  <<EOH
+<h3>#{label_edit_user_config}</h3>
+#{'<p><em>' + private_view_dependency_warning + '</em></p>'}
+#{'<ul>' + sp_li_plugins(dependent_plugin_files, true, dependent_plugins_enabled) + '</ul>' unless dependent_plugins_enabled}
+#{'<p>' + private_view_edit_user_auth + '</p>' unless @conf['user.auth'] == 0}
+<h3>#{private_view_label}</h3>
 EOH
+end
+
+def private_view_edit_user_auth
+  html = label_edit_user_auth_description
+  label_edit_user_auth_candidate.each_with_index do |cand, i|
+    html << %Q|<label><input type="radio" name="user.auth" value="#{i}"#{
+              ' checked' if @conf['user.auth'] == i}>#{cand}</label>|
+  end
+  
+  html
 end
 
 def private_view_bracketed_keyword(keyword)

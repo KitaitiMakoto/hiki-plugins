@@ -7,5 +7,6 @@ def private_view_keyword_insertion_description
   'Click to insert the keyword into keywords box above'
 end
 def private_view_dependency_warning
-  'Plugin(s) below is(are) not enabled. Check it(them) and press OK button to make private view enabled.'
+  'Enable plugin and permit only registrated users in order to make private view enabled.'
 end
+load_file File.join(File.dirname(__FILE__), 'edit_user.rb')

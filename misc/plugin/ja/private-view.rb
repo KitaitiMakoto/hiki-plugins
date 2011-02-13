@@ -8,5 +8,6 @@ def private_view_keyword_insertion_description
   'クリックすると上のキーワード欄に挿入されます'
 end
 def private_view_dependency_warning
-  '　閲覧制限を行うには次のプラグインを有効化する必要があります。有効化するプラグインをチェックしてOKボタンを押してください。'
+  '　閲覧制限を行うには次のプラグインを有効化し、登録ユーザーのみ編集可能にしてください。'
 end
+load_file File.join(File.dirname(__FILE__), 'edit_user.rb')
