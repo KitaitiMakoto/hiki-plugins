@@ -81,6 +81,7 @@ module Hiki
 
     def search
       word = utf8_to_euc( @cgi.params['key'][0] )
+      r = ""
       unless word.empty? then
         total, l = @db.search( word )
         l.reject! { |res| ! @plugin.viewable?(res[0]) }
@@ -100,7 +101,6 @@ module Hiki
       header['Pragma'] = 'no-cache'
       header['Cache-Control'] = 'no-cache'
       print @cgi.header( header )
-      #print r
       print euc_to_utf8(r)
       nil
     end

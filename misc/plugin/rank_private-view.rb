@@ -29,7 +29,7 @@ def rank( n = 20 )
 end
 
 add_body_leave_proc do
-  @db.increment_hitcount( @page )
+  @db.increment_hitcount( @page ) if @page
   ''
 end
 
