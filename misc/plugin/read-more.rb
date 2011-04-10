@@ -17,10 +17,12 @@
 def read_more(page)
   @read_more_count += 1
   <<EOQ
-  <div class="read-more" style="display: none;">
+  <div>
+    <div class="read-more" style="display: none;">
 #{quote_page(page)}
+    </div>
+    <a href="?#{page}" class="read-more">#{read_more_show_label}</a>
   </div>
-  <a href="#" class="read-more">#{read_more_show_label}</a>
 EOQ
 end
 
