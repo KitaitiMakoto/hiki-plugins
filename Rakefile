@@ -15,7 +15,12 @@ def private_view_required_files
 end
 
 Rake::PackageTask.new 'atom', :noversion do |p|
-  p.package_files.include ['atom.rb', 'en/atom.rb', 'ja/atom.rb'].map {|f| "#{PLUGIN_DIR}/#{f}"}
+  p.package_files.include ['', 'en/', 'ja/'].map {|dir| "#{PLUGIN_DIR}/#{dir}atom.rb"}
+  p.need_tar_gz = true
+end
+
+Rake::PackageTask.new 'jquery', :noversion do |p|
+  p.package_files.include "#{PLUGIN_DIR}/jquery.rb"
   p.need_tar_gz = true
 end
 
@@ -24,7 +29,7 @@ Rake::PackageTask.new 'private-view', :noversion do |p|
   p.need_tar_gz = true
 end
 
-Rake::PackageTask.new 'jquery', :noversion do |p|
-  p.package_files.include "#{PLUGIN_DIR}/jquery.rb"
+Rake::PackageTask.new 'read-more', :noversion do |p|
+  p.package_files.include ['', 'en/', 'ja/'].map {|dir| "#{PLUGIN_DIR}/#{dir}read-more.rb"}
   p.need_tar_gz = true
 end
