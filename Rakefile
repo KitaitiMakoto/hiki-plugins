@@ -23,3 +23,8 @@ Rake::PackageTask.new 'private-view', :noversion do |p|
   p.package_files.include private_view_required_files
   p.need_tar_gz = true
 end
+
+Rake::PackageTask.new 'jquery', :noversion do |p|
+  p.package_files.include "#{PLUGIN_DIR}/jquery.rb"
+  p.need_tar_gz = true
+end
