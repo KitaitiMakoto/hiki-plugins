@@ -28,7 +28,7 @@ end
 
 add_footer_proc do
   <<EOS
-<script type="text/javascript">
+<script type="text/javascript" charset="#{@conf.charset}">
   jQuery.fn.readMoreToggleText = function (first, second) {
     return this.text(this.text() == first ? second : first);
   };
