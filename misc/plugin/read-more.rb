@@ -1,8 +1,17 @@
 # read-more.rb
+#
 # Copyright (c) 2011 KITAITI Makoto <KitaitiMaoto@gmail.com>
+#
 # ! Requirements
 # * quote_page plugin(quote_page.rb)
 # * jQuery plugin(jquery.rb)
+#
+# ! Usage
+# # Create a page which has a content to be hidden, let name of the page 'MoreText'.
+# # In another page, call read more plugin like this:
+# <<<
+# {{read_more(MoreText)}}
+# >>>
 @read_more_count = 0
 
 def read_more(page)
