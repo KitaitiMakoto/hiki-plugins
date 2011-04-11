@@ -35,7 +35,7 @@ add_footer_proc do
   (function ($) {
     $('a.read-more').click(function (event) {
       event.preventDefault();
-      var anchor = $(event.target);
+      var anchor = $(event.currentTarget);
       anchor.prev('.read-more').slideToggle('normal', function () {
         anchor.readMoreToggleText('#{read_more_show_label}', '#{read_more_hide_label}')
       });
