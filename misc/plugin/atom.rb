@@ -206,7 +206,7 @@ def atom_saveconf
     @conf['atom.mode'] = @cgi.params['atom.mode'][0].intern
     @conf['atom.count'] = [@cgi.params['atom.count'][0].to_i, atom_max_page_count].min
     @conf['atom.count'] = [@conf['atom.count'], 1].max
-  end 
+  end
 end
 
 if @cgi.params['conf'][0] == 'atom' && @mode == 'saveconf'
