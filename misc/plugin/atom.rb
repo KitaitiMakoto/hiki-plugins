@@ -25,8 +25,6 @@ def atom
   else
     atom_feed
   end
-  
-  nil # Don't move to the 'FrontPage'
 end
 
 def atom_feed
@@ -40,7 +38,7 @@ def atom_feed
   
   if if_modified_since and last_modified <= if_modified_since
     header['status'] = 'NOT_MODIFIED'
-    print @cgi.header(header)
+    return ::Hiki::Response.new('', 304, header)
   else
     body = atom_body(pages)
     header['Last-Modified'] = last_modified.httpdate
@@ -49,8 +47,7 @@ def atom_feed
     header['Content-Language'] = @conf.lang
     header['Pragma']           = 'no-cache'
     header['Cache-Control']    = 'no-cache'
-    print @cgi.header(header)
-    print euc_to_utf8(body.to_s)
+    return ::Hiki::Response.new(body.to_s, 200, header)
   end
 end
 
@@ -67,7 +64,7 @@ def atom_entry(page_name)
   
   if if_modified_since and last_modified <= if_modified_since
     header['status'] = 'NOT_MODIFIED'
-    print @cgi.header(header)
+    return ::Hiki::Response.new('', 304, header)
   else
     require 'rss/maker'
     
@@ -81,8 +78,7 @@ def atom_entry(page_name)
     header['Content-Language'] = @conf.lang
     header['Pragma']           = 'no-cache'
     header['Cache-Control']    = 'no-cache'
-    print @cgi.header(header)
-    print euc_to_utf8(body.to_s)
+    return ::Hiki::Response.new(body.to_s, 200, header)
   end
 end
 
@@ -132,7 +128,7 @@ end
 def atom_make_entry(maker, page, options = {})
   maker.items.new_item do |item|
     name = page.keys[0]    
-    uri = @conf.index_url + '?' + name.escape
+    uri = @conf.index_url + '?' + escape(name)
     
     item.title = page_name(name)
     item.link = uri
@@ -196,9 +192,9 @@ end
 
 if @conf['atom.entry.enable']
   if @conf['atom.entry.menu-display']
-    add_menu_proc {%Q|<a href="#{@conf.index_url}?c=atom;p=#{@page.escape}">Atom Entry</a>|} if @page
+    add_menu_proc {%Q|<a href="#{@conf.index_url}?c=atom;p=#{escape(@page)}">Atom Entry</a>|} if @page
   end
-  add_header_proc { %Q|  <link rel="alternate" type="application/atom+xml" title="Atom Entry" href="#{@conf.index_url}?c=atom;p=#{@page.escape}">| } if @page
+  add_header_proc { %Q|  <link rel="alternate" type="application/atom+xml" title="Atom Entry" href="#{@conf.index_url}?c=atom;p=#{escape(@page)}">| } if @page
 end
 
 def atom_saveconf
@@ -209,7 +205,7 @@ def atom_saveconf
   end
 end
 
-if @cgi.params['conf'][0] == 'atom' && @mode == 'saveconf'
+if @cgi.params['conf'] == 'atom' && @mode == 'saveconf'
   @conf['atom.menu'] = (@cgi.params['atom.menu'][0] == 'true')
   @conf['atom.entry.enable'] = (@cgi.params['atom.entry.enable'][0] == 'true')
   @conf['atom.entry.menu-display'] = (@cgi.params['atom.entry.menu-display'][0] == 'true')

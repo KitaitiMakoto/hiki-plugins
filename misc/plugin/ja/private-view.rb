@@ -1,13 +1,13 @@
-# -*- encoding: euc-jp -*-
-def private_view_label; '��������'; end
+# coding: utf-8
+def private_view_label; '閲覧制限'; end
 def private_view_description
-  '���������¤˻Ȥ�������ɤ����ꤷ�Ƥ��������ʰ�Ԥ˰�ġˡ����ꤷ��������ɤ���Ѥ����ڡ����˱������¤��ݤ��ꡢ�������󤷤ʤ��¤긫���ʤ��ʤ�ޤ���'
+  '　閲覧制限に使うキーワードを設定してください（一行に一つ）。設定したキーワードを使用したページに閲覧制限が掛かり、ログインしない限り見られなくなります。'
 end
-def private_view_used_keywords_label; '���������Ѥ����ꤵ��Ƥ��륭�����'; end
+def private_view_used_keywords_label; '閲覧制限用に設定されているキーワード'; end
 def private_view_keyword_insertion_description
-  '����å�����Ⱦ�Υ�����������������ޤ�'
+  'クリックすると上のキーワード欄に挿入されます'
 end
 def private_view_dependency_warning
-  '���������¤�Ԥ��ˤϼ��Υץ饰�����ͭ����������Ͽ�桼�����Τ��Խ���ǽ�ˤ��Ƥ���������'
+  '　閲覧制限を行うには次のプラグインを有効化し、登録ユーザーのみ編集可能にしてください。'
 end
 load_file File.join(File.dirname(__FILE__), 'edit_user.rb')

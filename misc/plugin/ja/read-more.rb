@@ -1,3 +1,3 @@
-# -*- coding: euc-jp -*-
-def read_more_show_label; 'Â³¤­¤òÆÉ¤à'; end
-def read_more_hide_label; '±£¤¹'; end
+# coding: utf-8
+def read_more_show_label; 'ç¶šãã‚’èª­ã‚€'; end
+def read_more_hide_label; 'éš ã™'; end

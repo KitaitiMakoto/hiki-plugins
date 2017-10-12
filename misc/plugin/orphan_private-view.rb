@@ -6,14 +6,14 @@ def orphan_pages
   pages.reject! {|p| ! viewable? p} if respond_to? :viewable?
   pages = pages.select{|p| @db.get_references(p).empty?}
   pages.collect!{|p| [p, page_name(p)]}
-  pages.sort_by{|i| i[1].unescapeHTML}
+  pages.sort_by{|i| unescapeHTML(i[1])}
 end
 
 def orphan
   s = '<ul>'
 
   orphan_pages.each do |p, page_name|
-    s << %Q!<li>#{hiki_anchor(p.escape, page_name)}</li>\n!
+    s << %Q!<li>#{hiki_anchor(escape(p), page_name)}</li>\n!
   end
 
   s << "</ul>\n"

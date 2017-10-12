@@ -17,9 +17,9 @@ module ::Hiki
       }.collect {|f|
         k = f.keys[0]
         editor = f[k][:editor] ? "by #{f[k][:editor]}" : ''
-        display_text = ((f[k][:title] and f[k][:title].size > 0) ? f[k][:title] : k).escapeHTML
+        display_text = escapeHTML((f[k][:title] and f[k][:title].size > 0) ? f[k][:title] : k)
         display_text << " [#{@aliaswiki.aliaswiki(k)}]" if k != @aliaswiki.aliaswiki(k)
-        %Q!#{@plugin.hiki_anchor(k.escape, display_text)}: #{format_date(f[k][:last_modified] )} #{editor}#{@conf.msg_freeze_mark if f[k][:freeze]}!
+        %Q!#{@plugin.hiki_anchor(escape(k), display_text)}: #{format_date(f[k][:last_modified] )} #{editor}#{@conf.msg_freeze_mark if f[k][:freeze]}!
       }
 
       data = get_common_data( @db, @plugin, @conf )
@@ -44,9 +44,9 @@ module ::Hiki
         tm = f[k][:last_modified]
         editor = f[k][:editor] ? "by #{f[k][:editor]}" : ''
         display_text = (f[k][:title] and f[k][:title].size > 0) ? f[k][:title] : k
-        display_text = display_text.escapeHTML
+        display_text = escapeHTML(display_text)
         display_text << " [#{@aliaswiki.aliaswiki(k)}]" if k != @aliaswiki.aliaswiki(k)
-        %Q|#{format_date( tm )}: #{@plugin.hiki_anchor( k.escape, display_text )} #{editor.escapeHTML} (<a href="#{@conf.cgi_name}#{cmdstr('diff',"p=#{k.escape}")}">#{@conf.msg_diff}</a>)|
+        %Q|#{format_date( tm )}: #{@plugin.hiki_anchor( escape(k), display_text )} #{escapeHTML(editor)} (<a href="#{@conf.cgi_name}#{cmdstr('diff',"p=#{escape(k)}")}">#{@conf.msg_diff}</a>)|
       }
       [list, last_modified]
     end
@@ -70,9 +70,9 @@ module ::Hiki
       formatter = @conf.formatter.new( tokens, @db, @plugin, @conf )
       contents, toc = formatter.to_s, formatter.toc
       if @conf.hilight_keys
-        word = @params['key'][0]
+        word = @params['key']
         if word && word.size > 0
-          contents = hilighten(contents, word.unescape.split)
+          contents = hilighten(contents, unescape(word).split)
         end
       end
 
@@ -87,12 +87,12 @@ module ::Hiki
 
       pg_title = @plugin.page_name(@p)
 
-      data[:page_title]   = (@plugin.hiki_anchor( @p.escape, @p.escapeHTML ))
+      data[:page_title]   = (@plugin.hiki_anchor( escape(@p), escapeHTML(@p) ))
       data[:view_title]   = pg_title
-      data[:title]        = title( pg_title.unescapeHTML )
+      data[:title]        = title( escapeHTML(unescapeHTML(pg_title)) )
       data[:toc]          = @plugin.toc_f ? toc : nil
       data[:body]         = formatter.apply_tdiary_theme(contents)
-      data[:references]   = ref.collect! {|a| "[#{@plugin.hiki_anchor(a.escape, @plugin.page_name(a))}] " }.join
+      data[:references]   = ref.collect! {|a| "[#{@plugin.hiki_anchor(escape(a), @plugin.page_name(a))}] " }.join
       data[:keyword]      = @db.get_attribute(@p, :keyword).collect {|k| "[#{view_title(k)}]"}.join(' ')
 
       data[:last_modified]  = @db.get_last_update( @p )
@@ -116,21 +116,21 @@ module ::Hiki
         l.delete_if {|res| !@plugin.viewable?(res[0])}
         
         if @conf.hilight_keys
-          l.collect! {|p| @plugin.make_anchor("#{@conf.cgi_name}?cmd=view&p=#{p[0].escape}&key=#{word.split.join('+').escape}", @plugin.page_name(p[0])) + " - #{p[1]}"}
+          l.collect! {|p| @plugin.make_anchor("#{@conf.cgi_name}?cmd=view&p=#{escape(p[0])}&key=#{escape(word.split.join('+'))}", @plugin.page_name(p[0])) + " - #{p[1]}"}
         else
-          l.collect! {|p| @plugin.hiki_anchor( p[0].escape, @plugin.page_name(p[0])) + " - #{p[1]}"}
+          l.collect! {|p| @plugin.hiki_anchor( escape(p[0]), @plugin.page_name(p[0])) + " - #{p[1]}"}
         end
         data             = get_common_data( @db, @plugin, @conf )
         data[:title]     = title( @conf.msg_search_result )
         data[:msg2]      = @conf.msg_search + ': '
         data[:button]    = @conf.msg_search
-        data[:key]       = %Q|value="#{word.escapeHTML}"|
+        data[:key]       = %Q|value="#{escapeHTML(word)}"|
           word2            = word.split.join("', '")
         if l.size > 0
-          data[:msg1]    = sprintf( @conf.msg_search_hits, word2.escapeHTML, total, l.size )
+          data[:msg1]    = sprintf( @conf.msg_search_hits, escapeHTML(word2), total, l.size )
           data[:list]    = l
         else
-          data[:msg1]    = sprintf( @conf.msg_search_not_found, word2.escapeHTML )
+          data[:msg1]    = sprintf( @conf.msg_search_not_found, escapeHTML(word2) )
           data[:list]    = nil
         end
       else
@@ -176,7 +176,7 @@ def recent( n = 20 )
       ddd = cur_date
     end
     t = page_name(name)
-    an = hiki_anchor(name.escape, t)
+    an = hiki_anchor(escape(name), t)
     s << "<li>#{an}</li>\n"
   end
   s << "</ul>\n"

@@ -1,30 +1,30 @@
-# -*- coding: euc-jp -*-
+# coding: utf-8
 # ja/atom.rb
 
 def label_atom_recent
-  '¹¹¿·Æü»ş½ç'
+  'æ›´æ–°æ—¥æ™‚é †'
 end
 
-def label_atom_config; 'Atom ¤ÎÇÛ¿®'; end
-def label_atom_mode_title; 'Atom Feed¤Î¥Õ¥©¡¼¥Ş¥Ã¥È'; end
+def label_atom_config; 'Atom ã®é…ä¿¡'; end
+def label_atom_mode_title; 'Atom Feedã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ'; end
 def label_atom_mode_candidate
   {
-    :unidiff => 'unified diff ·Á¼°',
-    :worddiff_digest => 'word diff ·Á¼° (¥À¥¤¥¸¥§¥¹¥È)',
-    :worddiff_full => 'word diff ·Á¼° (Á´Ê¸)',
-    :html_full => 'HTML ·Á¼° (Á´Ê¸)',
+    :unidiff => 'unified diff å½¢å¼',
+    :worddiff_digest => 'word diff å½¢å¼ (ãƒ€ã‚¤ã‚¸ã‚§ã‚¹ãƒˆ)',
+    :worddiff_full => 'word diff å½¢å¼ (å…¨æ–‡)',
+    :html_full => 'HTML å½¢å¼ (å…¨æ–‡)',
   }
 end
-def label_atom_menu_title; 'Atom Feed¥á¥Ë¥å¡¼¤ÎÉ½¼¨'; end
-def label_atom_menu_enable; '¤¹¤ë'; end
-def label_atom_menu_disable; '¤·¤Ê¤¤'; end
-def label_atom_count_title; 'Atom Feed¤ÇÇÛ¿®¤¹¤ë¥Ú¡¼¥¸¤Î¿ô'; end
-def label_atom_count_unit; '·ï'; end
-def label_atom_max_page_count; "ºÇÂç#{atom_max_page_count}·ï"; end
+def label_atom_menu_title; 'Atom Feedãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®è¡¨ç¤º'; end
+def label_atom_menu_enable; 'ã™ã‚‹'; end
+def label_atom_menu_disable; 'ã—ãªã„'; end
+def label_atom_count_title; 'Atom Feedã§é…ä¿¡ã™ã‚‹ãƒšãƒ¼ã‚¸ã®æ•°'; end
+def label_atom_count_unit; 'ä»¶'; end
+def label_atom_max_page_count; "æœ€å¤§#{atom_max_page_count}ä»¶"; end
 
-def label_atom_entry_enable_title; '³Æ¥Ú¡¼¥¸¤ÎAtom Entry¤ÎÇÛ¿®'; end
-def label_atom_entry_enable; '¤¹¤ë'; end
-def label_atom_entry_disable; '¤·¤Ê¤¤'; end
-def label_atom_entry_menu_display_title; '³Æ¥Ú¡¼¥¸¤ÎAtom Entry¥á¥Ë¥å¡¼¤ÎÉ½¼¨'; end
-def label_atom_entry_menu_display; '¤¹¤ë'; end
-def label_atom_entry_menu_hide; '¤·¤Ê¤¤'; end
+def label_atom_entry_enable_title; 'å„ãƒšãƒ¼ã‚¸ã®Atom Entryã®é…ä¿¡'; end
+def label_atom_entry_enable; 'ã™ã‚‹'; end
+def label_atom_entry_disable; 'ã—ãªã„'; end
+def label_atom_entry_menu_display_title; 'å„ãƒšãƒ¼ã‚¸ã®Atom Entryãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®è¡¨ç¤º'; end
+def label_atom_entry_menu_display; 'ã™ã‚‹'; end
+def label_atom_entry_menu_hide; 'ã—ãªã„'; end

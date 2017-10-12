@@ -66,7 +66,7 @@ EOS
 
     items << '        '
 
-    uri = "#{@conf.index_url}?#{name.escape}"
+    uri = "#{@conf.index_url}?#{escape(name)}"
     items << %Q!<rdf:li rdf:resource="#{uri}"/>\n!
 
     item_list << <<EOS
