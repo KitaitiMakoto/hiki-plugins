@@ -54,10 +54,9 @@ module ::Hiki
     def cmd_view
       raise PermissionError, 'Permission denied' unless @plugin.viewable?( @p )
       
-      unless @db.exist?( @p )
-        @cmd = 'create'
-        cmd_create( @conf.msg_page_not_exist )
-        return
+      unless @db.exist?(@p)
+        @cmd = "create"
+        return cmd_create(@conf.msg_page_not_exist)
       end
 
       tokens = @db.load_cache( @p )
@@ -70,7 +69,7 @@ module ::Hiki
       formatter = @conf.formatter.new( tokens, @db, @plugin, @conf )
       contents, toc = formatter.to_s, formatter.toc
       if @conf.hilight_keys
-        word = @params['key']
+        word = @request['key']
         if word && word.size > 0
           contents = hilighten(contents, unescape(word).split)
         end
@@ -108,7 +107,7 @@ module ::Hiki
     end
     
     def cmd_search
-      word = @params['key'][0]
+      word = @request['key']
       if word && word.size > 0
         total, l = @db.search(word)
         
