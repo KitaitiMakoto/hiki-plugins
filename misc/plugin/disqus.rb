@@ -89,7 +89,7 @@ add_conf_proc("disqus", disqus_label_settings) do
   <<HTML
 <h3>shortname</h3>
 <p>#{disqus_label_shortname_description}</p>
-<p><input name="disqus.shortname" value="#{escapeHTML @conf['disqus.shortname']}" type="text" /></p>
+<p><input name="disqus.shortname" value="#{escapeHTML @conf['disqus.shortname'].to_s}" type="text" /></p>
 HTML
 end
 
