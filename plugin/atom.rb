@@ -199,16 +199,16 @@ end
 
 def atom_saveconf
   if @mode == 'saveconf'
-    @conf['atom.mode'] = @cgi.params['atom.mode'][0].intern
-    @conf['atom.count'] = [@cgi.params['atom.count'][0].to_i, atom_max_page_count].min
+    @conf['atom.mode'] = @request.params['atom.mode'].intern
+    @conf['atom.count'] = [@request.params['atom.count'].to_i, atom_max_page_count].min
     @conf['atom.count'] = [@conf['atom.count'], 1].max
   end
 end
 
-if @cgi.params['conf'] == 'atom' && @mode == 'saveconf'
-  @conf['atom.menu'] = (@cgi.params['atom.menu'][0] == 'true')
-  @conf['atom.entry.enable'] = (@cgi.params['atom.entry.enable'][0] == 'true')
-  @conf['atom.entry.menu-display'] = (@cgi.params['atom.entry.menu-display'][0] == 'true')
+if @request.params['conf'] == 'atom' && @mode == 'saveconf'
+  @conf['atom.menu'] = (@request.params['atom.menu'] == 'true')
+  @conf['atom.entry.enable'] = (@request.params['atom.entry.enable'] == 'true')
+  @conf['atom.entry.menu-display'] = (@request.params['atom.entry.menu-display'] == 'true')
 end
 
 add_conf_proc('atom', label_atom_config) do
