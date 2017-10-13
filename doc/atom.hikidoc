@@ -16,4 +16,4 @@ Enable the plugin and visit admin menu "Atom syndication". You can configure:
 ||!menu||"Atom"
 ||!command||atom(?c=atom)
 ||!config||"Atom syndication"
-||!package||[[atom.tar.gz||pkg/atom.tar.gz]]
+||!package||[[atom.tar.gz|pkg/atom.tar.gz]]

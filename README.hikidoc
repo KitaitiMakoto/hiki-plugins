@@ -30,7 +30,7 @@ This plugins syndicates [[Atom syndication feed|https://tools.ietf.org/html/rfc4
 ||!menu||"Atom"
 ||!command||atom(?c=atom)
 ||!config||"Atom syndication"
-||!package||[[atom.tar.gz||pkg/atom.tar.gz]]
+||!package||[[atom.tar.gz|pkg/atom.tar.gz]]
 
 !! [[jquery|jquery.html]]
 
