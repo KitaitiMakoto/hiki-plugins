@@ -5,7 +5,7 @@ pages:
     - gem install --no-document hikidoc
   script:
     - rake all
-    - mv pkg/* public/
+    - mv pkg public/
   artifacts:
     paths:
       - public
