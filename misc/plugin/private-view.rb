@@ -77,7 +77,7 @@ module ::Hiki
       end
 
       old_ref = @db.get_attribute( @p, :references )
-      new_ref = formatter.references 
+      new_ref = formatter.references
       @db.set_references( @p, new_ref ) if new_ref != old_ref
       ref = @db.get_references( @p )
       # inserted by this plugin
