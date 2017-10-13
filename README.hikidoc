@@ -11,3 +11,52 @@ Distributed under the term of the MIT License. See LICENSE file.
 
 ! Install
 Copy files to your Hiki directory and then activate them in admin page.
+Or, speify unarchived diretory in your Hiki config file(hikiconf.rb) like this:
+
+    @options['sp.path'] = [
+      misc/plugin
+      path/to/plugin/dir/of/this/repo
+    ]
+
+! Plugins
+
+These are plugins that is included in this repository. Visit title links for details.
+
+!! [[atom|atom.html]]
+
+This plugins syndicates [[Atom syndication feed|https://tools.ietf.org/html/rfc4287]] as RSS plugin.
+
+||!type||command, header, menu
+||!menu||"Atom"
+||!command||atom(?c=atom)
+||!config||"Atom syndication"
+
+!! [[jquery|jquery.html]]
+
+This plugin loads [[jQuery|https://jquery.com/]] from CDN so that other plugins can use.
+
+||!type||header
+
+!! [[private-view|private-view.html]]
+
+This plugin allows you hide some pages from non-logged in users.
+
+||!type||special
+||!config||"Private View"
+
+!! [[read-more|read-more.html]]
+
+This plugin adds "read more" feature.
+
+||!type||output
+
+!! [[disqus|disqus.html]]
+
+This plugin adds commenting feature using [[DISQUS|https://disqus.com/]].
+
+||!type||output
+||!config||"DISQUS"
+
+! Issues
+
+If you have some issues, file them at [[issue page|https://gitlab.com/KitaitiMakoto/hiki-plugins/issues]].
