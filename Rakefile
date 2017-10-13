@@ -15,6 +15,9 @@ def private_view_required_files
    ).map { |f| "#{PLUGIN_DIR}/#{f}" }
 end
 
+desc "Run all tasks"
+task :all => [:package, :doc]
+
 Rake::PackageTask.new 'atom', :noversion do |p|
   p.package_files.include ['', 'en/', 'ja/'].map {|dir| "#{PLUGIN_DIR}/#{dir}atom.rb"}
   p.need_tar_gz = true
