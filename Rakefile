@@ -1,6 +1,6 @@
 require 'rake/packagetask'
 
-PLUGIN_DIR = 'misc/plugin'
+PLUGIN_DIR = 'plugin'
 
 def private_view_required_files
   (['private-view.rb'] |
