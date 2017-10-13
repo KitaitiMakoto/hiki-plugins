@@ -33,3 +33,8 @@ Rake::PackageTask.new 'read-more', :noversion do |p|
   p.package_files.include ['', 'en/', 'ja/'].map {|dir| "#{PLUGIN_DIR}/#{dir}read-more.rb"}
   p.need_tar_gz = true
 end
+
+Rake::PackageTask.new 'disqus', :noversion do |p|
+  p.package_files.include ['', 'en/', 'ja/'].map {|dir| "#{PLUGIN_DIR}/#{dir}disqus.rb"}
+  p.need_tar_gz = true
+end
