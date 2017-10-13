@@ -3,8 +3,8 @@ These are plugins for [[Hiki|http://hikiwiki.org/]], Wiki engine written in Ruby
 
 ! Environment
 Checked under:
-* Ruby 1.8.7
-* Hiki 0.8.8.1
+* Ruby 2.4.2
+* Hiki 2.0.0.pre
 
 ! License
 Distributed under the term of the MIT License. See LICENSE file.
