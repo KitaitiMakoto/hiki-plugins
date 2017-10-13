@@ -1,0 +1,21 @@
+! private-view
+
+This plugin allows you hide some pages from non-logged in users.
+
+||!type||special
+||!config||"Private View"
+||!requires||[[edit_user|http://hikiwiki.org/ja/edit_user.rb.html]]
+
+!! Setting up
+
+# This plugin requires [[edit_user|http://hikiwiki.org/ja/edit_user.rb.html]] plugin, so enable it with this plugin and then set "Do you permit only registrated users to edit?" to "Yes".
+# Next, put keywords(one keyword per line) to be used for private pages at "Private View" page. ex) "private", "draft", "2020diary"
+# Finally you can make pages private by setting some keyword(s) chosen above to the pages.
+
+Try log out and confirm you cannot see the pages!
+
+!! Hiding pages from other plugins
+
+Some features of Hiki may show hidden pages to non-logged in users. For example, RSS feed by [[RSS|http://hikiwiki.org/ja/rss.rb.html]] plugin exposes hidden pages to everyone. To prevent these things, private-view plugin provides patches for some Hiki bundled-plugins like RSS.
+
+Visit "Plugin section" and you see, for instance, "rss-private_view.rb" plugin. Enable it if you're using corresponding "rss.rb" and diesable "original" plugin("rss.rb" here). Voila! hidden pages hidden from RSS feed! Please enable all xxx-private_view.rb whose correspoinding plugin is enabled.

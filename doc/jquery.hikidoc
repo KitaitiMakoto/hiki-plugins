@@ -1,0 +1,7 @@
+! jquery
+
+This plugin loads jQuery from CDN so that other plugins can use it.
+
+Just enable the plugin and then jQuery is loaded.
+
+||!type||header

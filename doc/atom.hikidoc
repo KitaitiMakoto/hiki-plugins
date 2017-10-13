@@ -1,0 +1,18 @@
+! atom plugin
+
+This plugins syndicates [[Atom syndication feed|https://tools.ietf.org/html/rfc4287]] as RSS plugin.
+
+Also, the plugin inserts <link> tag with alternate relation to pages.
+
+Enable the plugin and visit admin menu "Atom syndication". You can configure:
+
+* feed format
+* whether shows "Atom" menu or not
+* entries in a feed
+* whether syndicates feed for each entry(page) or not
+* whether shows "Atom Entry" menu or not
+
+||!type||command, header, menu
+||!menu||"Atom"
+||!command||atom(?c=atom)
+||!config||"Atom syndication"

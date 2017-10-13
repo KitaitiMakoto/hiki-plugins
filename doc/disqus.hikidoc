@@ -1,0 +1,51 @@
+! disqus
+
+This plugin adds commenting feature using [[DISQUS|https://disqus.com/]].
+
+||!type||output
+||!config||"DISQUS settings"
+||!requires||DISQUS account, @base_url config
+
+!! Setting up
+
+This plugin requires three things:
+
+* DISQUS account.
+* @base_url variable in configuration file.
+* shortname of DISQUS.
+
+For creating DISQUS account, it's out of scope. Visit [[sign up page|https://disqus.com/profile/signup/]].
+
+!!! @base_url configuration
+
+To set @base_url variable, open config file(hikiconf.rb by default) and find line
+
+    #@base_url        = "http://example.com/hiki/"
+
+Uncomment the line and write your base url:
+
+    @base_url        = "http://example.com/hiki/"
+
+Sometimes, you may not need path component(dependent on your environment):
+
+    @base_url        = "http://example.com/"
+
+!!! shortname
+
+After enabling the plugin, you need set "shortname" of DISQUS at config page("DISQUS settings").
+
+# Register your site to DISQUS. "Website Name" is the one called shortname here.
+# Choose "I don't see my platform listed, install manually with Universal Code" button at the bottom of "What platform is your site on?" page.
+# Complete registration.
+
+Now you got the "shortname". If you have forgotten, see [[What's a shortname? |https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-]].
+
+Next, visit "DISQUS settings" page of Hiki, and put the shortname to there.
+
+!! Usage
+
+Once you complete the settings, it's easy to use this plugin. Just write {{disqus}} where you want to put DISQUS comment widget.
+
+!! Limitation
+
+Currently, this plugin uses URL and page name(as an identifier) where {{disqus}} is called for DISQUS. This means you can ''not'' use single DISQUS thread for multiple, often a serial, Hiki pages.

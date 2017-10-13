@@ -1,0 +1,16 @@
+! read-more
+
+This plugin adds "read more" feature.
+
+||!type||output
+||!requires||[[quote_page|http://hikiwiki.org/ja/quote_page.rb.html]], [[jquery|jquery.html]]
+
+!! Usage
+
+To use this feature, you need two wiki pages - main page and andditinal page.
+
+# Create the main page excluding "more" part.
+# Create the additional page(for example, MoreTextPage).
+# Back to the main page and all read_more plugin at the bottom. Pass the name of additional page at that time: {{read_more(MoreTextPage)}}
+
+It's nice idea to hide the additional page by [[private-view|private-view.html]] plugin to prevent readers' see the page standalone.
