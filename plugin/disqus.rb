@@ -1,5 +1,3 @@
-$DEBUG=true
-
 require "uri"
 
 class DISQUSPlugin
