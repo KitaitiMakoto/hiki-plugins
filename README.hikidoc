@@ -43,19 +43,21 @@ This plugin allows you hide some pages from non-logged in users.
 
 ||!type||special
 ||!config||"Private View"
+||!requires||[[edit_user|http://hikiwiki.org/ja/edit_user.rb.html]]
 
 !! [[read-more|read-more.html]]
 
 This plugin adds "read more" feature.
 
 ||!type||output
+||!requires||[[quote_page|http://hikiwiki.org/ja/quote_page.rb.html]], [[jquery|jquery.html]]
 
 !! [[disqus|disqus.html]]
 
 This plugin adds commenting feature using [[DISQUS|https://disqus.com/]].
 
 ||!type||output
-||!config||"DISQUS"
+||!config||"DISQUS settings"
 
 ! Issues
 

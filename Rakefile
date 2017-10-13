@@ -1,3 +1,4 @@
+require "rake/clean"
 require 'rake/packagetask'
 
 PLUGIN_DIR = 'plugin'
@@ -37,4 +38,33 @@ end
 Rake::PackageTask.new 'disqus', :noversion do |p|
   p.package_files.include ['', 'en/', 'ja/'].map {|dir| "#{PLUGIN_DIR}/#{dir}disqus.rb"}
   p.need_tar_gz = true
+end
+
+DOC_SRC = FileList["doc/*.hikidoc"]
+DOC_HTML = DOC_SRC.pathmap("%X.html")
+DOC_HTML.include "README.html"
+DOC_DEST = DOC_HTML.pathmap("public/%f")
+DOC_DEST.include "public/index.html"
+
+CLEAN.include DOC_HTML
+
+directory "public"
+CLOBBER.include "public"
+
+DOC_HTML.each do |html|
+  file File.join("public", File.basename(html)) => html do |t|
+    copy t.source, t.name
+  end
+end
+
+file "public/index.html" => ["public", "public/README.html"] do |t|
+  copy t.sources[1], t.name
+end
+
+desc "Build documents"
+task :doc => ["public/index.html"] + DOC_DEST do |t|
+end
+
+rule ".html" => ".hikidoc" do |t|
+  sh "hikidoc --no-wikiname #{t.source} > #{t.name}"
 end

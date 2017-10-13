@@ -1,1 +1,4 @@
 pkg/
+doc/*.html
+README.html
+public/
