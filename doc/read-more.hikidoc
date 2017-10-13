@@ -4,6 +4,7 @@ This plugin adds "read more" feature.
 
 ||!type||output
 ||!requires||[[quote_page|http://hikiwiki.org/ja/quote_page.rb.html]], [[jquery|jquery.html]]
+||!package||[[read-more.tar.gz|pkg/read-more.tar.gz]]
 
 !! Usage
 

@@ -5,6 +5,7 @@ This plugin adds commenting feature using [[DISQUS|https://disqus.com/]].
 ||!type||output
 ||!config||"DISQUS settings"
 ||!requires||DISQUS account, @base_url config
+||!package||[[disqus.tar.gz|pkg/disqus.tar.gz]]
 
 !! Setting up
 

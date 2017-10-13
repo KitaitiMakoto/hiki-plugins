@@ -5,6 +5,7 @@ This plugin allows you hide some pages from non-logged in users.
 ||!type||special
 ||!config||"Private View"
 ||!requires||[[edit_user|http://hikiwiki.org/ja/edit_user.rb.html]]
+||!package||[[private-view.tar.gz|pkg/private-view.tar.gz]]
 
 !! Setting up
 

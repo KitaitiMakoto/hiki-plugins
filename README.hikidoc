@@ -30,12 +30,14 @@ This plugins syndicates [[Atom syndication feed|https://tools.ietf.org/html/rfc4
 ||!menu||"Atom"
 ||!command||atom(?c=atom)
 ||!config||"Atom syndication"
+||!package||[[atom.tar.gz||pkg/atom.tar.gz]]
 
 !! [[jquery|jquery.html]]
 
 This plugin loads [[jQuery|https://jquery.com/]] from CDN so that other plugins can use.
 
 ||!type||header
+||!package||[[jquery.tar.gz|pkg/jquery.tar.gz]]
 
 !! [[private-view|private-view.html]]
 
@@ -44,6 +46,7 @@ This plugin allows you hide some pages from non-logged in users.
 ||!type||special
 ||!config||"Private View"
 ||!requires||[[edit_user|http://hikiwiki.org/ja/edit_user.rb.html]]
+||!package||[[private-view.tar.gz|pkg/private-view.tar.gz]]
 
 !! [[read-more|read-more.html]]
 
@@ -51,6 +54,7 @@ This plugin adds "read more" feature.
 
 ||!type||output
 ||!requires||[[quote_page|http://hikiwiki.org/ja/quote_page.rb.html]], [[jquery|jquery.html]]
+||!package||[[read-more.tar.gz|pkg/read-more.tar.gz]]
 
 !! [[disqus|disqus.html]]
 
@@ -58,6 +62,7 @@ This plugin adds commenting feature using [[DISQUS|https://disqus.com/]].
 
 ||!type||output
 ||!config||"DISQUS settings"
+||!package||[[disqus.tar.gz|pkg/disqus.tar.gz]]
 
 ! Issues
 
